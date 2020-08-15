@@ -5,7 +5,8 @@ var errorSiteName=document.getElementById('errorSiteName');
 errorSiteName.style.display="none";
 var errorSiteUrl=document.getElementById('errorSiteUrl');
 errorSiteUrl.style.display="none";
-
+var errorValidUrl =document.getElementById('errorValidUrl');
+errorValidUrl.style.display="none";
 
 
 if(localStorage.getItem('bookmarkListStorage')==null){
@@ -18,16 +19,18 @@ if(localStorage.getItem('bookmarkListStorage')==null){
 submitbookmark.addEventListener('click',addBookmarkItem);
 function addBookmarkItem(eventInformation){
     eventInformation.preventDefault();
-    if(!validateBookmarkInputs()){        
-        bookmarkItem={
-            siteName:siteName.value,
-            siteUrl:siteUrl.value
-        };
-        bookmarkItemsArray.push(bookmarkItem);
-        localStorage.setItem('bookmarkListStorage' ,JSON.stringify(bookmarkItemsArray));
-        displaybookmarkList();
-        clearForm();
-    }    
+    if(!validateBookmarkInputs()){  
+        if(!validateUrlExpression()){
+           bookmarkItem={
+               siteName:siteName.value,
+               siteUrl:siteUrl.value
+           };
+           bookmarkItemsArray.push(bookmarkItem);
+           localStorage.setItem('bookmarkListStorage' ,JSON.stringify(bookmarkItemsArray));
+           displaybookmarkList();
+           clearForm();
+        }     
+   }    
 }
 
 function displaybookmarkList(){
@@ -73,6 +76,20 @@ function validateBookmarkInputs(){
         return false;
     }
 }
+
+/*     function to check if thr url is the right expression
+        source : 
+            https://www.regextester.com/94502
+            https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url
+ */ 
+function validateUrlExpression(){
+    var expression =/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm;
+    var regexUrl = new RegExp(expression);
+    if(!siteUrl.value.match(regexUrl)){
+        errorValidUrl.style.display="block"
+        return true ;
+    }
+ }
 
 function clearForm(){
     siteName.value="";

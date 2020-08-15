@@ -24,11 +24,11 @@ footer::before{
 #bookmarkForm>div{
     background-color: #eee;
 }
-#errorSiteName , #errorSiteUrl{
+#errorSiteName , #errorSiteUrl , #errorValidUrl{
     background-color: #ffb2b2;
     border: 1px solid #6d0000;
 }
-#errorSiteName::placeholder ,   #errorSiteUrl::placeholder{
+#errorSiteName::placeholder ,   #errorSiteUrl::placeholder ,#errorValidUrl::placeholder{
     color: #6d0000;
 } 
 form button:hover{

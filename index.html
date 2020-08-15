@@ -31,6 +31,17 @@
                   <label for="siteUrl">Site URL</label>
                   <input type="text" class="form-control" id="siteUrl" placeholder="website url">
                   <input id="errorSiteUrl" class="form-control errorAlert font-weight-bolder text-center mt-1" type="text" placeholder="Please enter your site URL" readonly>
+                  <textarea id="errorValidUrl"  rows="5" class="form-control errorAlert font-weight-bolder mt-1"placeholder="website url : enter a valid url" readonly>
+                    please : enter a valid url
+                    https://www.example.com  OR http://www.example.com             
+                    www.example.com          OR example.com
+                    http://blog.example.com
+                    http://www.example.com/product
+                    http://www.example.com/products?id=1&page=2
+                    http://www.example.com#up
+                    http://255.255.255.255   OR 255.255.255.255
+                    http://www.site.com:8008
+                  </textarea>
                 </div>
                 <button id="add" type="submit" class="btn btn-primary">Submit</button>
               </form>
